@@ -1,0 +1,15 @@
+
+
+block submitMessageContent
+
+    form(role="form", class='form-horizontal', name='submitMessage', action='/rooms/#{id}/createMessage',id="createMessageForm", method="POST")
+
+        fieldset
+            div#legend
+                input( type="hidden", name="_id", value="#{id}")
+            div.control-group
+                div.controls
+                    textarea(id='message',name='message',placeholder='Type your message',class='form-control', required)
+            div.control-group
+                div.controls
+                    input(type='submit',class='btn btn-submit', value='Send')

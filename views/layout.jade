@@ -1,0 +1,89 @@
+html
+  head
+    title= 'Chat' + ' | ' + title
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    link(rel="stylesheet", href="/stylesheets/myStyle.css")
+
+    script(src='/jquery/jquery.min.js')
+    script(src='/js/bootstrap.min.js')
+
+  body
+    block content
+    .container
+      div.topRightNav
+          span
+              a(href='/signout', class='text-center new-account') Sign Out
+          span  |
+          span
+          if user != null
+            a(href="/account")=user.username
+            if pathHack != null
+                img(src="#{pathHack}#{user.avatarIcon}", alt=user.username)
+            else
+                img(src="#{user.avatarIcon}", alt=user.username)
+          else
+            a(href="/account")="Welcome"
+
+      div.container
+          h2.homeTitle="Welcome to our chat rooms"
+        div.row
+          //Header for the 3 divs begin
+          div.row.chatHeader.col-sm-12.col-md-12
+            div.text-center.col-sm-3.col-md-3
+              h4="Rooms"
+            div.text-center.col-sm-6.col-md-6
+              h4="Chat"
+            div.text-center.col-sm-3.col-md-3
+              h4="Members in chat"
+          //Header for the 3 divs end
+        div.row
+          //The left side with rooms begin
+          div.userRooms.col-sm-3.col-md-3
+            aside.userRoomsList
+              block roomList
+
+
+            div.showAllRooms.text-center
+              a(href="/rooms/")="View all our rooms"
+          //The left side with rooms end
+          //The middle with the chat begin
+          div.col-sm-6.col-md-6
+            section.module
+              ol.discussion
+                block messageRoom
+
+            div.submitMessage
+
+              block createRoomContent
+
+              block submitMessageContent
+
+          div.membersChatList.col-sm-3.col-md-3
+            div.currentMembersInChat
+              ol
+                if rooms != null
+                  if rooms.users != null
+                    for user in rooms.users
+                      li
+                        if user != null
+                          div.avatar
+                              img(src="/#{user.avatarIcon}")
+                          div.userNameInChat
+                            p=user.username
+                            time=user.joinedDate
+                  else
+                    div.noUsers
+                      p.text-center="There are no users in this room"
+            div.noOfMembersInChat.text-center
+                if rooms != null
+                    if rooms.users != null
+                        span
+                        ="There are "
+                            =rooms.users.length
+                        span
+                        =" users in this room"
+
+
+
+

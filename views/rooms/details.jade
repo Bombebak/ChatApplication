@@ -1,0 +1,51 @@
+extends ../layout
+
+block roomList
+    ul
+        if rooms.length > 1
+            for room in rooms
+                li(role="presentation")
+                    a(href='/rooms/#{room._id}')=room.title
+        else
+            p(style="font-size: 30px;color: #4cae4c", class="text-center")=rooms.title
+            li
+                a(href="/home")="<-- Go back"
+
+block messageRoom
+
+        if rooms != null
+            if rooms.comments != null
+                for comment in rooms.comments
+                    if (user)
+                        if user.username == comment.author
+                            li.self
+                                div.avatar
+                                    img(src="../#{user.avatarIcon}")
+                                div.messages
+                                    p=comment.message
+                                    time
+                                        =comment.author
+                                        =" : "
+                                        =comment.createdDate
+                        else
+                            li.other
+                                div.avatar
+                                    img(src="../#{comment.avatarIcon}")
+                                    //img(src="../#{comment.avatarIcon}")
+                                div.messages
+                                    p=comment.message
+                                    time
+                                        =comment.author
+                                        =" : "
+                                        =comment.createdDate
+            else
+                div.noMessages
+                    p.text-center="There are no messages in this room"
+
+
+
+block submitMessageContent
+    #{messages}
+    include createMessage
+
+

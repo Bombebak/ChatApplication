@@ -1,0 +1,34 @@
+extends ../layout
+
+block roomList
+    ul
+        li
+            a(href="/home")="<-- Go back"
+
+block messageRoom
+    div.displayAllRooms.list-group
+            if rooms.length > 1
+                for room in rooms
+                        a.list-group-item(href='/rooms/#{room._id}')=room.title
+                            span.badge
+                                if room.users.length == 1
+                                    =room.users.length+" user"
+                                else
+                                    =room.users.length+" users"
+                            span.badge
+                                if room.comments.length == 1
+                                    =room.comments.length+" comment"
+                                else
+                                    =room.comments.length+" comments"
+
+
+block createRoomContent
+    include createRoom
+
+
+
+
+
+
+
+

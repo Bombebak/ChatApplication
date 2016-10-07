@@ -1,0 +1,44 @@
+extends layout
+
+block roomList
+    div.accountPageLeft
+        p(style="font-size: 30px;color: #4cae4c") Your account
+        p(style="color: #4cae4c") Username: #{user.username}
+        p(style="color: #4cae4c") Email:  #{user.email}
+
+
+block messageRoom
+    form(role="form", class='form-horizontal', name='updateAvatar', action='/account',id="updateAvatarForm", method="POST")
+        h2 Update your avatar
+        fieldset
+            div#legend
+                input( type="hidden", name="_id", value="")
+            div.control-group
+                div.controls
+                    img(src="/images/avatarIcon1.png")
+                    input(type="radio", id="avatar_picking1" name="avatar_picking", value="images/avatarIcon1.png", checked=gender == "male")
+                    span="George"
+                div.controls
+                    img(src="/images/avatarIcon2.png")
+                    input(type="radio", id="avatar_picking2" name="avatar_picking", value="images/avatarIcon2.png", checked=gender == "male")
+                    span="Jens"
+                div.controls
+                    img(src="/images/avatarIcon3.png")
+                    input(type="radio", id="avatar_picking3" name="avatar_picking", value="images/avatarIcon3.png", checked=gender == "male")
+                    span="Phillip"
+                div.controls
+                    img(src="/images/avatarIcon4.png")
+                    input(type="radio", id="avatar_picking4" name="avatar_picking", value="images/avatarIcon4.png", checked=gender == "male")
+                    span="Lisa"
+                div.controls
+                    img(src="/images/avatarIcon5.png")
+                    input(type="radio", id="avatar_picking5" name="avatar_picking", value="images/avatarIcon5.png", checked=gender == "male")
+                    span="Badass Ninja"
+
+            div.control-group
+                div.controls
+                    input(type='submit',class='btn btn-submit', value='Update')
+
+block submitMessageContent
+
+    include createMessageForm

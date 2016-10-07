@@ -1,0 +1,28 @@
+html
+  head
+    title= title + ' | '
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/stylesheets/myStyle.css")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+
+
+body
+
+block content
+  div.container
+    div.row
+      div.col-sm-6.col-md-4.col-md-offset-4
+        h1.text-center.loginTitle Sign in
+          div.login-wall
+            img(src='/images/user_icon.png', height="150px;", width="150px;")
+            form(class='form-signin', action='/login', method='POST')
+              input(type='text', name='username' class='form-control', placeholder='Username',required, autofocus)
+              input(type='password', name='password' class='form-control', placeholder='Password', required)
+              button(class='btn btn-lg btn-submit btn-block', type='submit') Sign in
+              span.clearfix
+          a(href='/signup', class='text-center', style="color: #4cae4c") Create an account
+          #message
+          if message
+            h1.text-center.error-message #{message}
+
+

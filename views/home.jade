@@ -1,0 +1,22 @@
+extends layout
+
+block roomList
+    ul
+        if rooms.length > 1
+            for room in rooms
+                li(role="presentation")
+                    a(href='/rooms/#{room._id}')=room.title
+        else
+            li
+                a(href="/home")="Go back"
+
+block messageRoom
+    div.noMessages
+        p.text-center="There are no messages in this room"
+
+block submitMessageContent
+
+    include createMessageForm
+
+
+

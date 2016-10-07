@@ -1,0 +1,12 @@
+
+block createRoomContent
+    form(role="form", class='form-horizontal', name='createRoom', action='/rooms/',id="createRoomForm", method="POST")
+
+        fieldset
+            div#legend
+            div.control-group
+                div.controls
+                    textarea(id='chatRoomTitle',name='chatRoomTitle',placeholder='Type the name of the room',class='form-control', required)
+            div.control-group
+                div.controls
+                    input(type='submit',class='btn btn-submit', value='Create room')
